@@ -8,14 +8,13 @@ POSTS_ON_DIPLAY = 5
 
 
 def filter_posts():
-    base_queryset = Post.objects.select_related(
+    return Post.objects.select_related(
         'author', 'category', 'location'
     ).filter(
         pub_date__lte=timezone.now(),
         is_published=True,
         category__is_published=True
     )
-    return base_queryset
 
 
 def index(request):
